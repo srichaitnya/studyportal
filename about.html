@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  font-family:'Roboto',sans-serif;
+  background:#1f1f2e;
+  color:#fff;
+}
+header{
+  background:#2a2a42;
+  padding:20px 50px;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
+}
+header h1{
+  font-family:'Montserrat',sans-serif;
+  font-size:28px;
+  margin:0;
+}
+nav a{
+  color:#fff;
+  margin-left:25px;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+}
+nav a:hover{
+  color:#88aaff;
+  transform: scale(1.05);
+}
+.hero{
+  text-align:center;
+  padding:80px 20px 50px 20px;
+  background:#2a2a42;
+}
+.hero h2{
+  font-family:'Montserrat',sans-serif;
+  font-size:36px;
+  margin-bottom:15px;
+  color:#88aaff;
+}
+.hero p{
+  font-size:18px;
+  color:#ccc;
+}
+.container{
+  width:90%;
+  max-width:1000px;
+  margin:40px auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+.container img{
+  width:100%;
+  border-radius:20px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+  transition:0.4s;
+}
+.container img:hover{
+  transform: scale(1.05);
+}
+.text-section h3{
+  font-family:'Montserrat',sans-serif;
+  font-size:28px;
+  color:#88aaff;
+  margin-bottom:15px;
+}
+.text-section p{
+  font-size:16px;
+  color:#ccc;
+  line-height:1.6;
+}
+.feature-cards{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  margin-top:50px;
+}
+.card{
+  background: linear-gradient(145deg,#333366,#444488);
+  border-radius:20px;
+  padding:30px 20px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+  transition: all 0.4s ease, transform 0.4s ease;
+}
+.card:hover{
+  transform: translateY(-12px) scale(1.05);
+  box-shadow:0 10px 30px rgba(0,0,0,0.8);
+  background: linear-gradient(145deg,#5555aa,#7777cc);
+}
+.card h4{
+  font-family:'Montserrat',sans-serif;
+  color:#88aaff;
+  margin-bottom:10px;
+}
+.card p{
+  font-weight:400;
+  color:#ccc;
+}
+footer{
+  background:#2a2a42;
+  padding:40px 50px;
+  text-align:center;
+  border-top:2px solid #444;
+  margin-top:40px;
+}
+footer p{
+  margin:8px 0;
+  font-size:14px;
+  color:#ccc;
+}
+footer a{
+  color:#88aaff;
+  text-decoration:none;
+  margin:0 12px;
+  transition:0.3s;
+}
+footer a:hover{
+  text-decoration:underline;
+}
+@media(max-width:800px){
+  .container{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Study Portal</h1>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="paper-pattern.html">Paper Patterns</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>About Us</h2>
+  <p>Learn more about our mission, vision, and features</p>
+</section>
+
+<div class="container">
+  <div class="text-section">
+    <h3>Our Mission</h3>
+    <p>Study Portal aims to provide students with a comprehensive platform to access study materials, notes, important questions, and interactive tools to enhance learning efficiency and exam preparedness.</p>
+    <h3>Our Vision</h3>
+    <p>We envision a future where every student can access quality education resources online, anytime and anywhere, and engage with innovative learning tools to excel academically.</p>
+  </div>
+  <div>
+    <img src="https://images.unsplash.com/photo-1581091870626-5a6a6d9f9865?fit=crop&w=800&q=80" alt="Study Portal Image">
+  </div>
+</div>
+
+<section class="feature-cards container">
+  <div class="card">
+    <h4>Interactive Notes</h4>
+    <p>Create, save, and download your own study notes quickly.</p>
+  </div>
+  <div class="card">
+    <h4>Paper Patterns</h4>
+    <p>Access subject-wise paper patterns to prepare efficiently.</p>
+  </div>
+  <div class="card">
+    <h4>Tech & SRP</h4>
+    <p>Explore technology updates and school research project ideas.</p>
+  </div>
+  <div class="card">
+    <h4>Practice & Tests</h4>
+    <p>Test yourself with practice papers and interactive tools.</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Study Portal. All rights reserved.</p>
+  <p>
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms of Service</a> | 
+    <a href="#">Contact Us</a>
+  </p>
+</footer>
+
+</body>
+</html>

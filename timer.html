@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Timer - Study Portal</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #1f2937;
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+}
+h1 {
+  color: #facc15;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+input, button {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  margin: 5px;
+}
+button {
+  background: #4ade80;
+  color: #000;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  background: #22c55e;
+}
+#timer {
+  font-size: 48px;
+  color: #38bdf8;
+  margin-top: 30px;
+}
+</style>
+</head>
+<body>
+
+<h1>⏳ Study Timer</h1>
+<p>Set your study duration (in minutes):</p>
+<input type="number" id="minutesInput" placeholder="Enter minutes">
+<br>
+<button onclick="startTimer()">Start Timer</button>
+<button onclick="resetTimer()">Reset</button>
+
+<div id="timer">00:00</div>
+
+<script>
+let timerInterval;
+let totalSeconds = 0;
+
+function startTimer(){
+  const minutes = parseInt(document.getElementById("minutesInput").value);
+  if(isNaN(minutes) || minutes <= 0){
+    alert("Please enter a valid number of minutes!");
+    return;
+  }
+  totalSeconds = minutes * 60;
+  clearInterval(timerInterval);
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    totalSeconds--;
+    updateTimerDisplay();
+    if(totalSeconds <= 0){
+      clearInterval(timerInterval);
+      alert("⏰ Time's up! Take a break or start a new session.");
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay(){
+  const mins = Math.floor(totalSeconds / 60);
+  const secs = totalSeconds % 60;
+  document.getElementById("timer").innerHTML = 
+    `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+}
+
+function resetTimer(){
+  clearInterval(timerInterval);
+  totalSeconds = 0;
+  document.getElementById("timer").innerHTML = "00:00";
+  document.getElementById("minutesInput").value = "";
+}
+</script>
+
+</body>
+</html>

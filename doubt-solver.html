@@ -1,0 +1,141 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full NCERT Chemistry Doubt Solver - Class 8</title>
+<style>
+body { font-family: Arial, sans-serif; background: #0f172a; color: #fff; text-align: center; padding: 40px 20px; }
+h1 { color: #facc15; font-size: 32px; margin-bottom: 20px; }
+textarea { width: 80%; max-width: 700px; height: 140px; padding: 15px; border-radius: 10px; border: none; font-size: 16px; margin-bottom: 15px; resize: none; }
+button { padding: 12px 25px; font-size: 16px; border-radius: 8px; border: none; background: #4ade80; color: #000; cursor: pointer; transition: 0.3s; margin: 5px; }
+button:hover { background: #22c55e; }
+#answer { margin-top: 30px; font-size: 18px; color: #38bdf8; white-space: pre-line; text-align: left; max-width: 950px; margin-left: auto; margin-right: auto; }
+</style>
+</head>
+<body>
+
+<h1>🧪 Full NCERT Chemistry Doubt Solver</h1>
+<p>Ask any question from <strong>Coal & Petroleum</strong> or <strong>Combustion & Flame</strong>:</p>
+
+<textarea id="question" placeholder="Type your chemistry doubt here..."></textarea><br>
+<button onclick="solveDoubt()">Solve Doubt</button>
+
+<div id="answer"></div>
+
+<script>
+function solveDoubt(){
+  const question = document.getElementById("question").value.trim();
+  const answerDiv = document.getElementById("answer");
+
+  if(!question){ alert("Please type your doubt!"); return; }
+
+  answerDiv.innerHTML = "🤔 Thinking...";
+
+  setTimeout(() => {
+    const q = question.toLowerCase();
+
+    const answers = [
+      // Coal & Petroleum
+      {keywords:["coal"], answer:
+`Coal: Fossil fuel formed from dead plants over millions of years.
+Types of Coal:
+1. Anthracite: Highest carbon (~90%), very hard, burns slowly, smokeless, high calorific value.
+2. Bituminous: Medium carbon (~70-80%), used in thermal power and industries, produces moderate smoke.
+3. Lignite: Brown coal, low carbon (~60-70%), soft, high moisture, burns quickly, low calorific value.
+4. Peat: Soft, lowest carbon (~50%), wet, burns with smoke, used as rural fuel.
+Uses: Fuel, electricity, coke, gas production, chemical industry.`},
+
+      {keywords:["coke"], answer:
+`Coke: Solid residue obtained by heating coal in absence of air (destructive distillation). Used in metallurgy and chemical industry.`},
+
+      {keywords:["calorific value"], answer:
+`Calorific value: Heat energy released when a unit quantity of fuel (1 kg or 1 litre) is completely burned.
+High calorific value: Anthracite > Bituminous > Lignite > Peat.
+Gaseous fuels generally have higher calorific value per kg than solid fuels.`},
+
+      {keywords:["petroleum","crude oil"], answer:
+`Petroleum: Naturally occurring liquid mixture of hydrocarbons.
+Fractional Distillation: Separates crude oil into fractions based on boiling point.
+Fractions:
+- Petrol (C5-C10): Light, used in vehicles
+- Kerosene (C10-C15): Lamps, stoves, aviation fuel
+- Diesel (C15-C20): Diesel engines
+- Lubricating oil (C20-C30): Machinery
+- Bitumen (C30+): Roads, roofing
+Uses: Fuel, lubricants, chemicals`},
+
+      {keywords:["natural gas","methane"], answer:
+`Natural gas: Mainly methane (CH4), clean fuel, used for cooking, heating, electricity.
+Gaseous fuels: LPG, natural gas, acetylene.`},
+
+      {keywords:["fuel"], answer:
+`Fuel: Substance that burns to produce energy.
+Types:
+- Solid: Coal, wood, charcoal
+- Liquid: Petrol, diesel, kerosene
+- Gas: LPG, natural gas`},
+
+      // Combustion
+      {keywords:["combustion"], answer:
+`Combustion: Rapid reaction with oxygen producing heat and light.
+Types:
+1. Complete combustion: Produces CO2 + H2O, releases maximum energy.
+   Example: C + O2 → CO2
+2. Incomplete combustion: Produces CO, soot, smoke; less energy.
+   Example: 2C + O2 → 2CO
+Fuel + O2 → CO/CO2 + H2O + heat`},
+
+      {keywords:["ignition temperature"], answer:
+`Ignition temperature: Minimum temperature at which a substance catches fire and burns without an external flame.`},
+
+      {keywords:["soot"], answer:
+`Soot: Black powdery carbon formed due to incomplete combustion of carbon-rich fuels.`},
+
+      {keywords:["heating value","calorific"], answer:
+`Heating value (Calorific value): Energy released when fuel burns completely.
+Solid fuels: coal, wood
+Liquid fuels: petrol, diesel
+Gaseous fuels: LPG, methane`},
+
+      // Flame
+      {keywords:["flame"], answer:
+`Flame zones:
+1. Inner dark zone: Unburnt wax/fuel, incomplete combustion
+2. Middle bright zone (luminous): Partially burnt, yellow, cooler
+3. Outer non-luminous (blue): Complete combustion, hottest
+Observation: Candle flame shows all three zones.`},
+
+      {keywords:["luminous flame"], answer:
+`Luminous flame: Bright yellow, middle zone, incomplete combustion, cooler than outer zone.`},
+
+      {keywords:["non-luminous flame"], answer:
+`Non-luminous flame: Blue, outer zone, complete combustion, hottest part of flame.`},
+
+      {keywords:["candle flame"], answer:
+`Candle flame: Shows inner dark zone, middle luminous zone, outer non-luminous zone. Useful to study flame structure.`}
+    ];
+
+    let found = false;
+    for(const item of answers){
+      for(const kw of item.keywords){
+        if(q.includes(kw)){
+          answerDiv.innerHTML = item.answer;
+          found = true;
+          break;
+        }
+      }
+      if(found) break;
+    }
+
+    if(!found){
+      answerDiv.innerHTML = "❌ Sorry, this doubt is not recognized. Please ask questions only from Coal & Petroleum or Combustion & Flame (Class 8 NCERT).";
+    }
+  }, 500);
+}
+</script>
+
+</body>
+</html>

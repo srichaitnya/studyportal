@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemical Effects of Electric Current - Practise Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  font-family: 'Roboto', sans-serif;
+  background: #1f1f2e;
+  color:#fff;
+}
+header{
+  background: #2a2a42;
+  padding:30px 50px;
+  text-align:center;
+  font-family:'Montserrat', sans-serif;
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:1px;
+  position: sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
+}
+.container{
+  max-width:800px;
+  margin:40px auto;
+  padding:0 20px;
+}
+.question-card{
+  background: linear-gradient(145deg, #333366, #444488);
+  padding:25px 20px;
+  border-radius:15px;
+  margin-bottom:25px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+}
+.question-card h3{
+  margin-bottom:15px;
+}
+.options button{
+  display:block;
+  width:100%;
+  margin:8px 0;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  background:#5555aa;
+  color:#fff;
+  transition:0.3s;
+}
+.options button:hover{
+  background:#7777cc;
+}
+.options button.correct{
+  background:#28a745 !important;
+}
+.options button.wrong{
+  background:#dc3545 !important;
+}
+#submitBtn{
+  width:100%;
+  padding:15px;
+  margin-top:20px;
+  background: linear-gradient(145deg, #333366, #444488);
+  border:none;
+  border-radius:12px;
+  color:#fff;
+  font-weight:700;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.3s;
+}
+#submitBtn:hover{
+  background: linear-gradient(145deg, #5555aa, #7777cc);
+  transform: scale(1.05);
+}
+#result{
+  text-align:center;
+  margin-top:20px;
+  font-size:22px;
+  font-weight:700;
+  color:#88ff88;
+}
+</style>
+</head>
+<body>
+
+<header>Study Portal - Chemical Effects of Electric Current</header>
+
+<div class="container" id="quizContainer"></div>
+
+<div class="container">
+  <button id="submitBtn">Submit Answers</button>
+  <div id="result"></div>
+</div>
+
+<script>
+// All correct answers are first option (A)
+const quizData = [
+  { question: "1. Electrolysis is?", options: ["Chemical change due to electric current", "Physical change", "Magnetic effect", "Heating effect"], answer: "Chemical change due to electric current" },
+  { question: "2. Copper is used for?", options: ["Conducting wire", "Heating wire", "Insulation", "Electrolyte"], answer: "Conducting wire" },
+  { question: "3. Electroplating is used for?", options: ["Coating metal to prevent rust", "Generating electricity", "Heating", "Sound production"], answer: "Coating metal to prevent rust" },
+  { question: "4. Which electrode is positive?", options: ["Anode", "Cathode", "Neutral", "None"], answer: "Anode" },
+  { question: "5. Which electrode is negative?", options: ["Cathode", "Anode", "Neutral", "None"], answer: "Cathode" },
+  { question: "6. Electrolyte conducts because of?", options: ["Ions", "Electrons", "Neutrons", "Photons"], answer: "Ions" },
+  { question: "7. Electroplating improves?", options: ["Appearance", "Mass", "Speed", "Sound"], answer: "Appearance" },
+  { question: "8. Electrolyte in water conducts because of?", options: ["Dissociated ions", "Electrons", "Neutrons", "Protons"], answer: "Dissociated ions" },
+  { question: "9. Which metal is commonly electroplated?", options: ["Silver", "Aluminium", "Iron", "Copper"], answer: "Silver" },
+  { question: "10. Electrolysis produces?", options: ["Gas or metal deposition", "Heat only", "Sound", "Light"], answer: "Gas or metal deposition" }
+];
+
+const userAnswers = new Array(quizData.length).fill(null);
+const quizContainer = document.getElementById('quizContainer');
+
+quizData.forEach((q,index)=>{
+  const card = document.createElement('div');
+  card.classList.add('question-card');
+  let optionsHTML = '<div class="options">';
+  q.options.forEach(option=>{
+    optionsHTML += `<button onclick="selectAnswer(this,${index},'${q.answer}')">${option}</button>`;
+  });
+  optionsHTML += '</div>';
+  card.innerHTML = `<h3>${q.question}</h3>${optionsHTML}`;
+  quizContainer.appendChild(card);
+});
+
+function selectAnswer(btn, qIndex, correct){
+  if(userAnswers[qIndex] !== null) return; // Only first click counts
+  userAnswers[qIndex] = btn.textContent;
+  const options = btn.parentElement.querySelectorAll('button');
+  options.forEach(b=>b.disabled=true);
+  if(btn.textContent === correct){
+    btn.classList.add('correct');
+  } else {
+    btn.classList.add('wrong');
+    options.forEach(b=>{
+      if(b.textContent === correct) b.classList.add('correct');
+    });
+  }
+}
+
+document.getElementById('submitBtn').addEventListener('click', ()=>{
+  let score = 0;
+  userAnswers.forEach((ans,index)=>{
+    if(ans === quizData[index].answer) score++;
+  });
+  document.getElementById('result').textContent = `Your Score: ${score} / ${quizData.length}`;
+});
+</script>
+
+</body>
+</html>
+

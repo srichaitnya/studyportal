@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Portal Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  font-family: 'Roboto', sans-serif;
+  background: #1f1f2e;
+  color:#fff;
+}
+/* Header */
+header{
+  background: #2a2a42;
+  padding:20px 50px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
+}
+header h1{
+  font-family:'Montserrat', sans-serif;
+  font-size:28px;
+  margin:0;
+}
+nav a{
+  color:#fff;
+  margin-left:25px;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+}
+nav a:hover{
+  color:#88aaff;
+  transform: scale(1.05);
+}
+
+/* Hero */
+.hero{
+  text-align:center;
+  padding:80px 20px 40px 20px;
+  background:#2a2a42;
+}
+.hero h2{
+  font-family:'Montserrat', sans-serif;
+  font-size:36px;
+  margin-bottom:15px;
+}
+.hero p{
+  font-size:18px;
+  color:#ccc;
+  margin-bottom:25px;
+}
+#searchBar{
+  width:80%;
+  max-width:400px;
+  padding:12px 15px;
+  border-radius:25px;
+  border:none;
+  font-size:16px;
+  outline:none;
+  transition:0.3s;
+}
+#searchBar:focus{
+  box-shadow:0 0 10px #88aaff;
+}
+
+/* Grid */
+.container{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  padding:40px 40px;
+}
+.card{
+  background: linear-gradient(145deg, #333366, #444488);
+  border-radius:20px;
+  padding:30px 20px;
+  text-align:center;
+  font-weight:700;
+  font-size:18px;
+  text-transform: uppercase;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+  transition: all 0.4s ease, transform 0.4s ease;
+}
+.card:hover{
+  transform: translateY(-12px) scale(1.05);
+  box-shadow:0 10px 30px rgba(0,0,0,0.8);
+  background: linear-gradient(145deg, #5555aa, #7777cc);
+}
+
+/* Footer */
+footer{
+  background:#2a2a42;
+  padding:40px 50px;
+  text-align:center;
+  border-top: 2px solid #444;
+  margin-top:40px;
+}
+footer p{
+  margin:8px 0;
+  font-size:14px;
+  color:#ccc;
+}
+footer a{
+  color:#88aaff;
+  text-decoration:none;
+  margin:0 12px;
+  transition:0.3s;
+}
+footer a:hover{
+  text-decoration:underline;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Study Portal</h1>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Welcome to Study Portal</h2>
+  <p>Access notes, diagrams, practice tests, and more! <br> made by sukhjot and sagan</p>
+  <input type="text" id="searchBar" placeholder="Search sections...">
+</section>
+
+<!-- Normal Study Sections -->
+<div class="container" id="sectionsContainer">
+  <div class="card" onclick="window.location='paper-pattern.html'">Paper Pattern</div>
+  <div class="card" onclick="window.location='nasa-work.html'">NASA Work</div>
+  <div class="card" onclick="window.location='business-idea.html'">Business Idea</div>
+  <div class="card" onclick="window.location='diagram.html'">Diagram 2D & 3D</div>
+  <div class="card" onclick="window.location='practise-test.html'">Practise Test</div>
+  <div class="card" onclick="window.location='whiteboard.html'">White Board Section</div>
+  <div class="card" onclick="window.location='own-notes.html'">Create Own Notes</div>
+  <div class="card" onclick="window.location='important-que.html'">Important Questions</div>
+  <div class="card" onclick="window.location='ncert.html'">NCERT</div>
+  <div class="card" onclick="window.location='techno.html'">Techno</div>
+  <div class="card" onclick="window.location='srp.html'">SRP</div>
+  <div class="card" onclick="window.location='cbse.html'">CBSE</div>
+</div>
+
+<!-- Unique Features as Buttons -->
+<div class="container">
+  <div class="card" onclick="window.location='spin.html'">🎡 Spin Wheel</div>
+  <div class="card" onclick="window.location='quiz.html'">📖 Daily Quiz</div>
+  <div class="card" onclick="window.location='leaderboard.html'">🏆 Leaderboard</div>
+  <div class="card" onclick="window.location='formula.html'">🔍 Formula Finder</div>
+  <div class="card" onclick="window.location='flashcards.html'">🃏 Flashcards</div>
+  <div class="card" onclick="window.location='countdown.html'">⏳ Exam Countdown</div>
+  <div class="card" onclick="window.location='doubt-solver.html'">🤖 AI Doubt Solver</div>
+  <div class="card" onclick="window.location='timer.html'">🎯 Study Timer</div>
+</div>
+
+<footer>
+  <p>© 2025 Study Portal. All rights reserved.</p>
+  <p>
+    <a href="privacy.html">Privacy Policy</a> | 
+    <a href="terms.html">Terms of Service</a> | 
+    <a href="contact.html">Contact Us</a>
+  </p>
+</footer>
+
+<script>
+// Fade-in cards
+const cards = document.querySelectorAll('.card');
+cards.forEach((card,index)=>{
+  card.style.opacity=0;
+  card.style.transform='translateY(30px)';
+  setTimeout(()=>{
+    card.style.transition='all 0.5s ease';
+    card.style.opacity=1;
+    card.style.transform='translateY(0)';
+  }, index*100);
+});
+
+// Search bar filter
+const searchBar = document.getElementById('searchBar');
+searchBar.addEventListener('keyup', function(){
+  const filter = searchBar.value.toLowerCase();
+  cards.forEach(card=>{
+    if(card.textContent.toLowerCase().includes(filter)){
+      card.style.display='block';
+    } else {
+      card.style.display='none';
+    }
+  });
+});
+</script>
+</body>
+</html>

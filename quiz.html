@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Quiz - Study Portal</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #1f1f2e;
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+h1 {
+  color: #88aaff;
+}
+.quiz-container {
+  max-width: 700px;
+  margin: auto;
+  background: #2a2a42;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+.question {
+  font-size: 18px;
+  margin: 20px 0 10px 0;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+button.option {
+  background: #444488;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  transition: 0.3s;
+}
+button.option:hover {
+  background: #6666cc;
+}
+#nextBtn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  font-size: 16px;
+  background: #88aaff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  display: none;
+}
+#nextBtn:hover {
+  background: #5577cc;
+}
+#result {
+  font-size: 20px;
+  margin-top: 20px;
+  font-weight: bold;
+  color: #ffdd55;
+}
+</style>
+</head>
+<body>
+  <h1>📖 Daily Quiz</h1>
+  <div class="quiz-container">
+    <div id="quiz"></div>
+    <button id="nextBtn" onclick="nextQuestion()">Next</button>
+    <div id="result"></div>
+  </div>
+
+<script>
+// Sample Questions (can be expanded)
+const questions = [
+  {
+    question: "Force is measured in?",
+    options: ["Newton", "Joule", "Watt", "Pascal"],
+    answer: "Newton"
+  },
+  {
+    question: "Which gas is known as 'fuel of rockets'?",
+    options: ["Oxygen", "Hydrogen", "Nitrogen", "Carbon dioxide"],
+    answer: "Hydrogen"
+  },
+  {
+    question: "Which organ purifies blood in the human body?",
+    options: ["Heart", "Lungs", "Kidney", "Liver"],
+    answer: "Kidney"
+  },
+  {
+    question: "Who discovered gravity?",
+    options: ["Albert Einstein", "Isaac Newton", "Galileo", "Edison"],
+    answer: "Isaac Newton"
+  },
+  {
+    question: "Which is the largest planet in our solar system?",
+    options: ["Earth", "Mars", "Jupiter", "Saturn"],
+    answer: "Jupiter"
+  },
+  {
+    question: "Sound travels fastest in?",
+    options: ["Air", "Water", "Steel", "Vacuum"],
+    answer: "Steel"
+  }
+];
+
+let current = 0;
+let score = 0;
+
+// Shuffle and pick 5 questions
+const selected = questions.sort(()=>0.5 - Math.random()).slice(0,5);
+
+function loadQuestion(){
+  const q = selected[current];
+  let html = `<div class="question">${current+1}. ${q.question}</div><div class="options">`;
+  q.options.forEach(opt=>{
+    html += `<button class="option" onclick="checkAnswer(this, '${q.answer}')">${opt}</button>`;
+  });
+  html += `</div>`;
+  document.getElementById("quiz").innerHTML = html;
+}
+
+function checkAnswer(btn, correct){
+  const options = document.querySelectorAll(".option");
+  options.forEach(b=>b.disabled = true);
+  if(btn.innerText === correct){
+    btn.style.background = "green";
+    score++;
+  } else {
+    btn.style.background = "red";
+    options.forEach(b=>{
+      if(b.innerText === correct) b.style.background="green";
+    });
+  }
+  document.getElementById("nextBtn").style.display = "inline-block";
+}
+
+function nextQuestion(){
+  current++;
+  document.getElementById("nextBtn").style.display = "none";
+  if(current < selected.length){
+    loadQuestion();
+  } else {
+    document.getElementById("quiz").innerHTML = "";
+    document.getElementById("result").innerText = `🎉 You scored ${score} / ${selected.length}`;
+  }
+}
+
+loadQuestion();
+</script>
+</body>
+</html>

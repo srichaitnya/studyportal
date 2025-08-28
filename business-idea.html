@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Ideas</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  font-family: 'Roboto', sans-serif;
+  background: #1f1f2e;
+  color:#fff;
+}
+header{
+  background: #2a2a42;
+  padding:20px 50px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
+}
+header h1{
+  font-family:'Montserrat', sans-serif;
+  font-size:28px;
+  margin:0;
+}
+nav a{
+  color:#fff;
+  margin-left:25px;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+}
+nav a:hover{
+  color:#88aaff;
+  transform: scale(1.05);
+}
+.hero{
+  text-align:center;
+  padding:80px 20px 50px 20px;
+  background:#2a2a42;
+}
+.hero h2{
+  font-family:'Montserrat', sans-serif;
+  font-size:36px;
+  margin-bottom:15px;
+}
+.hero p{
+  font-size:18px;
+  color:#ccc;
+}
+.container{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  padding:40px 40px;
+}
+.card{
+  background: linear-gradient(145deg, #333366, #444488);
+  border-radius:20px;
+  padding:30px 20px;
+  text-align:center;
+  font-weight:700;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+  transition: all 0.4s ease, transform 0.4s ease;
+}
+.card:hover{
+  transform: translateY(-12px) scale(1.05);
+  box-shadow:0 10px 30px rgba(0,0,0,0.8);
+  background: linear-gradient(145deg, #5555aa, #7777cc);
+}
+.detail-section{
+  padding:40px;
+  background:#262640;
+  border-radius:20px;
+  margin:30px 40px;
+  line-height:1.6;
+}
+.detail-section h3{
+  font-family:'Montserrat',sans-serif;
+  font-size:26px;
+  margin-bottom:15px;
+  color:#88aaff;
+}
+.detail-section img{
+  max-width:100%;
+  border-radius:12px;
+  margin:15px 0;
+}
+footer{
+  background:#2a2a42;
+  padding:40px 50px;
+  text-align:center;
+  border-top:2px solid #444;
+  margin-top:40px;
+}
+footer p{
+  margin:8px 0;
+  font-size:14px;
+  color:#ccc;
+}
+footer a{
+  color:#88aaff;
+  text-decoration:none;
+  margin:0 12px;
+  transition:0.3s;
+}
+footer a:hover{
+  text-decoration:underline;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Study Portal</h1>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="paper-pattern.html">Paper Patterns</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Business Ideas</h2>
+  <p>Explore easy, practical, and innovative business ideas and how to start your first business</p>
+</section>
+
+<div class="container">
+  <div class="card" onclick="document.getElementById('digital').scrollIntoView({behavior:'smooth'})">Digital / Online</div>
+  <div class="card" onclick="document.getElementById('local').scrollIntoView({behavior:'smooth'})">Local / Offline</div>
+  <div class="card" onclick="document.getElementById('tech').scrollIntoView({behavior:'smooth'})">Tech & Innovative</div>
+  <div class="card" onclick="document.getElementById('investment').scrollIntoView({behavior:'smooth'})">Investment Friendly</div>
+</div>
+
+<!-- Detail Sections -->
+<div id="digital" class="detail-section">
+  <h3>Digital / Online Businesses</h3>
+  <ul>
+    <li><strong>YouTube / Social Media Content:</strong> Create educational or entertaining content. Start small, use free editing tools, and grow audience. Monetize via ads or sponsorships.</li>
+    <li><strong>Freelancing:</strong> Offer small services like graphic design, writing, or coding. Use Fiverr, Upwork, or freelancing platforms.</li>
+    <li><strong>Blogging / Website:</strong> Create niche blogs (study tips, tech, hobbies) and earn via ads.</li>
+    <li><strong>Print-on-Demand:</strong> Design T-shirts, mugs, or stationery and sell online without inventory.</li>
+  </ul>
+  <p><strong>How to Start:</strong> Choose one niche, make a small plan, create basic content, promote on social media, and improve gradually.</p>
+</div>
+
+<div id="local" class="detail-section">
+  <h3>Local / Offline Businesses</h3>
+  <ul>
+    <li><strong>Tutoring / Coaching:</strong> Teach peers or younger students in subjects you excel in.</li>
+    <li><strong>Handmade Crafts:</strong> Make greeting cards, jewelry, or art and sell locally or online.</li>
+    <li><strong>Food & Snacks:</strong> Prepare homemade snacks or baked goods and sell to neighbors or school friends.</li>
+    <li><strong>Plants / Gardening:</strong> Grow indoor/outdoor plants and sell terrariums or small plants.</li>
+  </ul>
+  <p><strong>How to Start:</strong> Pick a simple business idea, create sample products, show to local buyers, and gradually expand.</p>
+</div>
+
+<div id="tech" class="detail-section">
+  <h3>Tech & Innovative Businesses</h3>
+  <ul>
+    <li><strong>Mobile Apps / Games:</strong> Create small educational apps or mini-games using free tools.</li>
+    <li><strong>Arduino / Raspberry Pi Projects:</strong> Build small electronics projects or useful gadgets.</li>
+    <li><strong>Recycling / Eco Products:</strong> Make eco-friendly items like reusable bags, stationery, or upcycled products.</li>
+  </ul>
+  <p><strong>How to Start:</strong> Choose a tech project that excites you, learn basics online, create a prototype, and test with friends or family.</p>
+</div>
+
+<div id="investment" class="detail-section">
+  <h3>Investment Friendly Businesses</h3>
+  <ul>
+    <li><strong>Digital Products:</strong> Sell eBooks, worksheets, or online courses. Start by creating simple guides in subjects you know.</li>
+    <li><strong>Dropshipping / Reselling:</strong> Buy products at low price online and sell at a profit.</li>
+    <li><strong>Stock Market / Cryptocurrency (Educational Purpose):</strong> Learn basics with small money to understand trading and investments.</li>
+  </ul>
+  <p><strong>How to Start:</strong> Start with one small investment-friendly idea, research thoroughly, test it with minimal resources, and scale gradually.</p>
+</div>
+
+<footer>
+  <p>© 2025 Study Portal. All rights reserved.</p>
+  <p>
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms of Service</a> | 
+    <a href="#">Contact Us</a>
+  </p>
+</footer>
+
+</body>
+</html>

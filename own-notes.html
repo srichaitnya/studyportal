@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Own Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  font-family: 'Roboto', sans-serif;
+  background: #1f1f2e;
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+header{
+  background: #2a2a42;
+  padding:20px 50px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top:0;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
+}
+header h1{
+  font-family:'Montserrat', sans-serif;
+  font-size:28px;
+  margin:0;
+}
+nav a{
+  color:#fff;
+  margin-left:25px;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+}
+nav a:hover{
+  color:#88aaff;
+  transform: scale(1.05);
+}
+.hero{
+  text-align:center;
+  padding:50px 20px 20px 20px;
+}
+.hero h2{
+  font-family:'Montserrat', sans-serif;
+  font-size:36px;
+  margin-bottom:15px;
+  color:#88aaff;
+}
+.hero p{
+  font-size:18px;
+  color:#ccc;
+}
+.controls{
+  display:flex;
+  justify-content:center;
+  margin:15px 0;
+  gap:15px;
+}
+button{
+  padding:10px 20px;
+  font-size:16px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover{
+  transform: scale(1.05);
+}
+#save{ background:#88aaff; color:#fff; }
+#clear{ background:#ff5555; color:#fff; }
+#download{ background:#ffaa88; color:#fff; }
+
+textarea{
+  display:block;
+  width:90%;
+  margin:0 auto 30px auto;
+  height:500px;
+  padding:15px;
+  font-size:16px;
+  border-radius:10px;
+  border:none;
+  resize:none;
+}
+footer{
+  background:#2a2a42;
+  padding:40px 50px;
+  text-align:center;
+  border-top:2px solid #444;
+  margin-top:auto;
+}
+footer p{
+  margin:8px 0;
+  font-size:14px;
+  color:#ccc;
+}
+footer a{
+  color:#88aaff;
+  text-decoration:none;
+  margin:0 12px;
+  transition:0.3s;
+}
+footer a:hover{
+  text-decoration:underline;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Study Portal</h1>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="paper-pattern.html">Paper Patterns</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Own Notes</h2>
+  <p>Write, save, and download your personal notes</p>
+</section>
+
+<div class="controls">
+  <button id="save">Save</button>
+  <button id="clear">Clear</button>
+  <button id="download">Download</button>
+</div>
+
+<textarea id="notes" placeholder="Start writing your notes here..."></textarea>
+
+<footer>
+  <p>© 2025 Study Portal. All rights reserved.</p>
+</footer>
+
+<script>
+const textarea = document.getElementById('notes');
+
+// Save notes to local storage
+document.getElementById('save').addEventListener('click', () => {
+  localStorage.setItem('ownNotes', textarea.value);
+  alert('Notes saved!');
+});
+
+// Load saved notes on page load
+window.onload = () => {
+  if(localStorage.getItem('ownNotes')){
+    textarea.value = localStorage.getItem('ownNotes');
+  }
+}
+
+// Clear notes
+document.getElementById('clear').addEventListener('click', () => {
+  if(confirm('Are you sure you want to clear notes?')){
+    textarea.value = '';
+    localStorage.removeItem('ownNotes');
+  }
+});
+
+// Download notes as txt file
+document.getElementById('download').addEventListener('click', () => {
+  const blob = new Blob([textarea.value], {type:'text/plain'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'my_notes.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+</script>
+
+</body>
+</html>
+

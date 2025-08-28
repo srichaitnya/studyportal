@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagrams</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  font-family: 'Roboto', sans-serif;
+  background: #1f1f2e;
+  color:#fff;
+}
+header{
+  background: #2a2a42;
+  padding:20px 50px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
+}
+header h1{
+  font-family:'Montserrat', sans-serif;
+  font-size:28px;
+  margin:0;
+}
+nav a{
+  color:#fff;
+  margin-left:25px;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+}
+nav a:hover{
+  color:#88aaff;
+  transform: scale(1.05);
+}
+.hero{
+  text-align:center;
+  padding:80px 20px 50px 20px;
+  background:#2a2a42;
+}
+.hero h2{
+  font-family:'Montserrat', sans-serif;
+  font-size:36px;
+  margin-bottom:15px;
+}
+.hero p{
+  font-size:18px;
+  color:#ccc;
+}
+.container{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  padding:40px 40px;
+}
+.card{
+  background: linear-gradient(145deg, #333366, #444488);
+  border-radius:20px;
+  padding:30px 20px;
+  text-align:center;
+  font-weight:700;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+  transition: all 0.4s ease, transform 0.4s ease;
+}
+.card:hover{
+  transform: translateY(-12px) scale(1.05);
+  box-shadow:0 10px 30px rgba(0,0,0,0.8);
+  background: linear-gradient(145deg, #5555aa, #7777cc);
+}
+.detail-section{
+  padding:40px;
+  background:#262640;
+  border-radius:20px;
+  margin:30px 40px;
+  line-height:1.6;
+}
+.detail-section h3{
+  font-family:'Montserrat',sans-serif;
+  font-size:26px;
+  margin-bottom:15px;
+  color:#88aaff;
+}
+.detail-section img{
+  max-width:100%;
+  border-radius:12px;
+  margin:15px 0;
+}
+footer{
+  background:#2a2a42;
+  padding:40px 50px;
+  text-align:center;
+  border-top:2px solid #444;
+  margin-top:40px;
+}
+footer p{
+  margin:8px 0;
+  font-size:14px;
+  color:#ccc;
+}
+footer a{
+  color:#88aaff;
+  text-decoration:none;
+  margin:0 12px;
+  transition:0.3s;
+}
+footer a:hover{
+  text-decoration:underline;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Study Portal</h1>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="paper-pattern.html">Paper Patterns</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Diagrams</h2>
+  <p>Explore 2D and 3D diagrams for Physics, Chemistry, and Biology</p>
+</section>
+
+<div class="container">
+  <div class="card" onclick="document.getElementById('phy').scrollIntoView({behavior:'smooth'})">Physics</div>
+  <div class="card" onclick="document.getElementById('che').scrollIntoView({behavior:'smooth'})">Chemistry</div>
+  <div class="card" onclick="document.getElementById('bio').scrollIntoView({behavior:'smooth'})">Biology</div>
+</div>
+
+<!-- Detail Sections -->
+<div id="phy" class="detail-section">
+  <h3>Physics Diagrams</h3>
+  <p>2D diagrams: Circuits, forces, motion diagrams, optics diagrams.</p>
+  <p>3D diagrams: Electromagnetic field, mechanical systems, 3D vectors.</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Physics_Diagram_Example.png/400px-Physics_Diagram_Example.png" alt="Physics Diagram">
+</div>
+
+<div id="che" class="detail-section">
+  <h3>Chemistry Diagrams</h3>
+  <p>2D diagrams: Molecular structures, reaction pathways, periodic table charts.</p>
+  <p>3D diagrams: 3D molecular models, crystal structures, chemical bonding models.</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Molecule_Chemistry_Diagram.png/400px-Molecule_Chemistry_Diagram.png" alt="Chemistry Diagram">
+</div>
+
+<div id="bio" class="detail-section">
+  <h3>Biology Diagrams</h3>
+  <p>2D diagrams: Plant cell, animal cell, human organs, food chain diagrams.</p>
+  <p>3D diagrams: Human body 3D structures, DNA double helix, anatomical models.</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Plant_cell_diagram.svg/400px-Plant_cell_diagram.svg.png" alt="Biology Diagram">
+</div>
+
+<footer>
+  <p>© 2025 Study Portal. All rights reserved.</p>
+  <p>
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms of Service</a> | 
+    <a href="#">Contact Us</a>
+  </p>
+</footer>
+
+</body>
+</html>

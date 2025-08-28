@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formula Finder - Study Portal</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #121223;
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+}
+h1 {
+  text-align: center;
+  color: #66ccff;
+}
+.search-box {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.search-box input {
+  padding: 10px;
+  width: 80%;
+  max-width: 400px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.formula-container {
+  max-width: 800px;
+  margin: auto;
+  background: #1f1f33;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+.formula {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #2a2a44;
+  border-radius: 10px;
+}
+.formula h3 {
+  margin: 0;
+  color: #88ddff;
+}
+.formula p {
+  margin: 5px 0 0 0;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h1>📘 Formula Finder</h1>
+
+<div class="search-box">
+  <input type="text" id="search" placeholder="Search formula (e.g. Force, Area, Ohm's law)...">
+</div>
+
+<div class="formula-container" id="formulaList">
+  <!-- Formulas will appear here -->
+</div>
+
+<script>
+const formulas = [
+  {topic: "Force", formula: "Force = Mass × Acceleration (F = m × a)"},
+  {topic: "Pressure", formula: "Pressure = Force / Area"},
+  {topic: "Work", formula: "Work = Force × Distance"},
+  {topic: "Power", formula: "Power = Work / Time"},
+  {topic: "Speed", formula: "Speed = Distance / Time"},
+  {topic: "Ohm's Law", formula: "V = I × R"},
+  {topic: "Kinetic Energy", formula: "KE = 1/2 × m × v²"},
+  {topic: "Potential Energy", formula: "PE = m × g × h"},
+  {topic: "Area of Circle", formula: "A = π × r²"},
+  {topic: "Perimeter of Circle", formula: "C = 2 × π × r"},
+  {topic: "Area of Triangle", formula: "A = 1/2 × base × height"},
+  {topic: "Area of Rectangle", formula: "A = length × breadth"},
+  {topic: "Pythagoras Theorem", formula: "a² + b² = c²"},
+  {topic: "Density", formula: "Density = Mass / Volume"},
+  {topic: "Frequency", formula: "Frequency = 1 / Time Period"}
+];
+
+function displayFormulas(list){
+  const container = document.getElementById("formulaList");
+  container.innerHTML = "";
+  list.forEach(f=>{
+    container.innerHTML += `
+      <div class="formula">
+        <h3>${f.topic}</h3>
+        <p>${f.formula}</p>
+      </div>
+    `;
+  });
+}
+
+// Initial display
+displayFormulas(formulas);
+
+// Search functionality
+document.getElementById("search").addEventListener("keyup", function(){
+  const val = this.value.toLowerCase();
+  const filtered = formulas.filter(f=>f.topic.toLowerCase().includes(val));
+  displayFormulas(filtered);
+});
+</script>
+
+</body>
+</html>

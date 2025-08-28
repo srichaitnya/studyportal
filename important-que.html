@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Important Questions</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  font-family: 'Roboto', sans-serif;
+  background:#1f1f2e;
+  color:#fff;
+}
+header{
+  background:#2a2a42;
+  padding:20px 50px;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
+}
+header h1{
+  font-family:'Montserrat', sans-serif;
+  font-size:28px;
+  margin:0;
+}
+nav a{
+  color:#fff;
+  margin-left:25px;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+}
+nav a:hover{
+  color:#88aaff;
+  transform: scale(1.05);
+}
+.hero{
+  text-align:center;
+  padding:80px 20px 50px 20px;
+  background:#2a2a42;
+}
+.hero h2{
+  font-family:'Montserrat', sans-serif;
+  font-size:36px;
+  margin-bottom:15px;
+  color:#88aaff;
+}
+.hero p{
+  font-size:18px;
+  color:#ccc;
+}
+.container{
+  width:90%;
+  max-width:1000px;
+  margin:40px auto;
+}
+.subject-card{
+  background: linear-gradient(145deg,#333366,#444488);
+  padding:25px;
+  border-radius:20px;
+  margin-bottom:20px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.subject-card:hover{
+  transform:scale(1.02);
+  box-shadow:0 6px 20px rgba(0,0,0,0.7);
+}
+.subject-card h3{
+  margin:0;
+  font-family:'Montserrat',sans-serif;
+  color:#88aaff;
+}
+.questions{
+  display:none;
+  margin-top:15px;
+  padding-left:20px;
+}
+.questions ul{
+  list-style-type: disc;
+}
+footer{
+  background:#2a2a42;
+  padding:40px 50px;
+  text-align:center;
+  border-top:2px solid #444;
+  margin-top:40px;
+}
+footer p{
+  margin:8px 0;
+  font-size:14px;
+  color:#ccc;
+}
+footer a{
+  color:#88aaff;
+  text-decoration:none;
+  margin:0 12px;
+  transition:0.3s;
+}
+footer a:hover{
+  text-decoration:underline;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Study Portal</h1>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="paper-pattern.html">Paper Patterns</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Important Questions</h2>
+  <p>Subject-wise important questions for quick revision</p>
+</section>
+
+<div class="container">
+
+  <div class="subject-card" onclick="toggleQuestions('hindi')">
+    <h3>Hindi</h3>
+    <div class="questions" id="hindi">
+      <ul>
+        <li>Coming Soon...</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="subject-card" onclick="toggleQuestions('pbi')">
+    <h3>PBI</h3>
+    <div class="questions" id="pbi">
+      <ul>
+        <li>Coming Soon...</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="subject-card" onclick="toggleQuestions('sst')">
+    <h3>SST</h3>
+    <div class="questions" id="sst">
+      <ul>
+        <li>Coming Soon...</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="subject-card" onclick="toggleQuestions('math')">
+    <h3>Math</h3>
+    <div class="questions" id="math">
+      <ul>
+        <li>Coming Soon...</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="subject-card" onclick="toggleQuestions('eng')">
+    <h3>English</h3>
+    <div class="questions" id="eng">
+      <ul>
+        <li>Coming Soon...</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="subject-card" onclick="toggleQuestions('phy')">
+    <h3>Physics</h3>
+    <div class="questions" id="phy">
+      <ul>
+        <li>Coming Soon...</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="subject-card" onclick="toggleQuestions('che')">
+    <h3>Chemistry</h3>
+    <div class="questions" id="che">
+      <ul>
+        <li>Coming Soon...</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="subject-card" onclick="toggleQuestions('bio')">
+    <h3>Biology</h3>
+    <div class="questions" id="bio">
+      <ul>
+        <li>Coming Soon...</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 Study Portal. All rights reserved.</p>
+  <p>
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms of Service</a> | 
+    <a href="#">Contact Us</a>
+  </p>
+</footer>
+
+<script>
+function toggleQuestions(id){
+  const el = document.getElementById(id);
+  if(el.style.display==='block'){
+    el.style.display='none';
+  } else{
+    el.style.display='block';
+  }
+}
+</script>
+
+</body>
+</html>
+

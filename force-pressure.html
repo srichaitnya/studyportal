@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Force & Pressure - Practise Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  font-family: 'Roboto', sans-serif;
+  background: #1f1f2e;
+  color:#fff;
+}
+
+/* Header */
+header{
+  background: #2a2a42;
+  padding:30px 50px;
+  text-align:center;
+  font-family:'Montserrat', sans-serif;
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:1px;
+  position: sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
+}
+
+/* Container */
+.container{
+  max-width:800px;
+  margin:40px auto;
+  padding:0 20px;
+}
+
+/* Question Card */
+.question-card{
+  background: linear-gradient(145deg, #333366, #444488);
+  padding:25px 20px;
+  border-radius:15px;
+  margin-bottom:25px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+  transition: all 0.4s ease;
+}
+.question-card h3{
+  margin-bottom:15px;
+}
+.options button{
+  display:block;
+  width:100%;
+  margin:8px 0;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  background:#5555aa;
+  color:#fff;
+  transition:0.3s;
+}
+.options button:hover{
+  background:#7777cc;
+}
+.options button.correct{
+  background:#28a745 !important;
+}
+.options button.wrong{
+  background:#dc3545 !important;
+}
+
+/* Submit button */
+#submitBtn{
+  width:100%;
+  padding:15px;
+  margin-top:20px;
+  background: linear-gradient(145deg, #333366, #444488);
+  border:none;
+  border-radius:12px;
+  color:#fff;
+  font-weight:700;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.3s;
+}
+#submitBtn:hover{
+  background: linear-gradient(145deg, #5555aa, #7777cc);
+  transform: scale(1.05);
+}
+
+/* Result */
+#result{
+  text-align:center;
+  margin-top:20px;
+  font-size:22px;
+  font-weight:700;
+  color:#88ff88;
+}
+</style>
+</head>
+<body>
+
+<header>Study Portal - Force & Pressure</header>
+
+<div class="container" id="quizContainer">
+  <!-- Questions will be injected here -->
+</div>
+
+<div class="container">
+  <button id="submitBtn">Submit Answers</button>
+  <div id="result"></div>
+</div>
+
+<script>
+// MCQ Data (Important Questions)
+const quizData = [
+  {
+    question: "1. What is the SI unit of force?",
+    options: ["Newton", "Joule", "Pascal", "Watt"],
+    answer: "Newton"
+  },
+  {
+    question: "2. Pressure is defined as?",
+    options: ["Force per unit area", "Area per unit force", "Mass per unit volume", "Weight per unit mass"],
+    answer: "Force per unit area"
+  },
+  {
+    question: "3. Which instrument is used to measure pressure?",
+    options: ["Barometer", "Manometer", "Ammeter", "Voltmeter"],
+    answer: "Manometer"
+  },
+  {
+    question: "4. Atmospheric pressure at sea level is approximately?",
+    options: ["1 atm", "10 atm", "5 atm", "0.5 atm"],
+    answer: "1 atm"
+  },
+  {
+    question: "5. Force is a vector quantity. True or False?",
+    options: ["True", "False"],
+    answer: "True"
+  }
+];
+
+// Track selected answers
+const userAnswers = new Array(quizData.length).fill(null);
+
+// Generate quiz cards
+const quizContainer = document.getElementById('quizContainer');
+quizData.forEach((q,index)=>{
+  const card = document.createElement('div');
+  card.classList.add('question-card');
+  let optionsHTML = '<div class="options">';
+  q.options.forEach(option=>{
+    optionsHTML += `<button onclick="selectAnswer(this,${index},'${q.answer}')">${option}</button>`;
+  });
+  optionsHTML += '</div>';
+  card.innerHTML = `<h3>${q.question}</h3>${optionsHTML}`;
+  quizContainer.appendChild(card);
+});
+
+// Handle answer selection
+function selectAnswer(btn, qIndex, correct){
+  if(userAnswers[qIndex] !== null) return; // Already answered
+  userAnswers[qIndex] = btn.textContent;
+
+  const options = btn.parentElement.querySelectorAll('button');
+  options.forEach(b=>b.disabled=true); // disable all buttons for this question
+  if(btn.textContent === correct){
+    btn.classList.add('correct');
+  } else {
+    btn.classList.add('wrong');
+    // highlight correct
+    options.forEach(b=>{
+      if(b.textContent === correct) b.classList.add('correct');
+    });
+  }
+}
+
+// Submit Button
+document.getElementById('submitBtn').addEventListener('click', ()=>{
+  let score = 0;
+  userAnswers.forEach((ans,index)=>{
+    if(ans === quizData[index].answer) score++;
+  });
+  document.getElementById('result').textContent = `Your Score: ${score} / ${quizData.length}`;
+});
+</script>
+
+</body>
+</html>
+

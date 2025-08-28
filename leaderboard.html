@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderboard - Study Portal</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #101020;
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+}
+h1 {
+  text-align: center;
+  color: #ffcc00;
+}
+.table-container {
+  max-width: 700px;
+  margin: auto;
+  background: #1c1c33;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 12px;
+  text-align: center;
+}
+th {
+  background: #333366;
+  color: #ffdd55;
+}
+tr:nth-child(even) {
+  background: #2a2a44;
+}
+tr:nth-child(odd) {
+  background: #1f1f33;
+}
+.highlight {
+  background: #444488 !important;
+  font-weight: bold;
+  color: #00ffcc;
+}
+</style>
+</head>
+<body>
+
+<h1>🏆 Leaderboard</h1>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Student Name</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody id="leaderboardBody">
+      <!-- Data will be filled here -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+// Demo leaderboard data
+const players = [
+  {name: "Akash", score: 95},
+  {name: "Simran", score: 89},
+  {name: "Rohit", score: 76},
+  {name: "Priya", score: 70},
+  {name: "Kabir", score: 65},
+  {name: "Aman", score: 60},
+  {name: "Neha", score: 55},
+  {name: "Sahil", score: 50}
+];
+
+// Sort by score descending
+players.sort((a,b) => b.score - a.score);
+
+const tbody = document.getElementById("leaderboardBody");
+
+// Display leaderboard
+players.forEach((p, i) => {
+  tbody.innerHTML += `
+    <tr class="${p.name === 'Akash' ? 'highlight' : ''}">
+      <td>${i+1}</td>
+      <td>${p.name}</td>
+      <td>${p.score}</td>
+    </tr>
+  `;
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friction - Practise Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  font-family: 'Roboto', sans-serif;
+  background: #1f1f2e;
+  color:#fff;
+}
+
+/* Header */
+header{
+  background: #2a2a42;
+  padding:30px 50px;
+  text-align:center;
+  font-family:'Montserrat', sans-serif;
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:1px;
+  position: sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
+}
+
+/* Container */
+.container{
+  max-width:800px;
+  margin:40px auto;
+  padding:0 20px;
+}
+
+/* Question Card */
+.question-card{
+  background: linear-gradient(145deg, #333366, #444488);
+  padding:25px 20px;
+  border-radius:15px;
+  margin-bottom:25px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+  transition: all 0.4s ease;
+}
+.question-card h3{
+  margin-bottom:15px;
+}
+.options button{
+  display:block;
+  width:100%;
+  margin:8px 0;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  background:#5555aa;
+  color:#fff;
+  transition:0.3s;
+}
+.options button:hover{
+  background:#7777cc;
+}
+.options button.correct{
+  background:#28a745 !important;
+}
+.options button.wrong{
+  background:#dc3545 !important;
+}
+
+/* Submit button */
+#submitBtn{
+  width:100%;
+  padding:15px;
+  margin-top:20px;
+  background: linear-gradient(145deg, #333366, #444488);
+  border:none;
+  border-radius:12px;
+  color:#fff;
+  font-weight:700;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.3s;
+}
+#submitBtn:hover{
+  background: linear-gradient(145deg, #5555aa, #7777cc);
+  transform: scale(1.05);
+}
+
+/* Result */
+#result{
+  text-align:center;
+  margin-top:20px;
+  font-size:22px;
+  font-weight:700;
+  color:#88ff88;
+}
+</style>
+</head>
+<body>
+
+<header>Study Portal - Friction</header>
+
+<div class="container" id="quizContainer">
+  <!-- Questions injected here -->
+</div>
+
+<div class="container">
+  <button id="submitBtn">Submit Answers</button>
+  <div id="result"></div>
+</div>
+
+<script>
+// MCQ Data (20 Important Friction Questions)
+const quizData = [
+  { question: "1. Friction opposes?", options: ["Motion", "Force", "Gravity", "Weight"], answer: "Motion" },
+  { question: "2. Unit of friction is?", options: ["Newton", "Pascal", "Joule", "Watt"], answer: "Newton" },
+  { question: "3. Friction can generate?", options: ["Heat", "Cold", "Light", "Sound"], answer: "Heat" },
+  { question: "4. Friction acts at?", options: ["Surface of contact", "Center of mass", "Point of gravity", "None"], answer: "Surface of contact" },
+  { question: "5. Friction depends on?", options: ["Nature of surface", "Mass", "Height", "Speed"], answer: "Nature of surface" },
+  { question: "6. Kinetic friction acts on?", options: ["Moving bodies", "Resting bodies", "Stationary walls", "None"], answer: "Moving bodies" },
+  { question: "7. Static friction acts on?", options: ["Stationary bodies", "Moving bodies", "Air", "Water"], answer: "Stationary bodies" },
+  { question: "8. Which is less?", options: ["Kinetic friction", "Static friction", "Both same", "None"], answer: "Kinetic friction" },
+  { question: "9. Friction can be reduced by?", options: ["Lubrication", "Heating", "Cooling", "Increasing weight"], answer: "Lubrication" },
+  { question: "10. Friction helps in?", options: ["Walking", "Flying", "Swimming", "Sliding"], answer: "Walking" },
+  { question: "11. Rolling friction is?", options: ["Less than sliding friction", "Greater than sliding", "Equal", "None"], answer: "Less than sliding friction" },
+  { question: "12. Friction depends on?", options: ["Normal force", "Area", "Velocity", "Temperature"], answer: "Normal force" },
+  { question: "13. Friction converts motion into?", options: ["Heat", "Sound", "Energy", "Light"], answer: "Heat" },
+  { question: "14. Friction is a?", options: ["Non-conservative force", "Conservative force", "Magnetic force", "Electrostatic force"], answer: "Non-conservative force" },
+  { question: "15. Advantage of friction is?", options: ["Walking easily", "Sliding objects", "Energy loss", "None"], answer: "Walking easily" },
+  { question: "16. Disadvantage of friction?", options: ["Wear and tear", "Ease of motion", "Flying", "None"], answer: "Wear and tear" },
+  { question: "17. Friction depends on?", options: ["Roughness of surface", "Temperature", "Color", "Speed"], answer: "Roughness of surface" },
+  { question: "18. Friction is caused due to?", options: ["Interlocking of irregularities", "Gravity", "Magnetism", "Air"], answer: "Interlocking of irregularities" },
+  { question: "19. Frictionless motion is possible?", options: ["In vacuum", "On Earth", "In water", "None"], answer: "In vacuum" },
+  { question: "20. Friction force acts?", options: ["Opposite to motion", "Along motion", "Perpendicular", "None"], answer: "Opposite to motion" }
+];
+
+// Track user answers
+const userAnswers = new Array(quizData.length).fill(null);
+
+// Generate quiz cards
+const quizContainer = document.getElementById('quizContainer');
+quizData.forEach((q,index)=>{
+  const card = document.createElement('div');
+  card.classList.add('question-card');
+  let optionsHTML = '<div class="options">';
+  q.options.forEach(option=>{
+    optionsHTML += `<button onclick="selectAnswer(this,${index},'${q.answer}')">${option}</button>`;
+  });
+  optionsHTML += '</div>';
+  card.innerHTML = `<h3>${q.question}</h3>${optionsHTML}`;
+  quizContainer.appendChild(card);
+});
+
+// Handle answer selection
+function selectAnswer(btn, qIndex, correct){
+  if(userAnswers[qIndex] !== null) return; // Already answered
+  userAnswers[qIndex] = btn.textContent;
+
+  const options = btn.parentElement.querySelectorAll('button');
+  options.forEach(b=>b.disabled=true);
+  if(btn.textContent === correct){
+    btn.classList.add('correct');
+  } else {
+    btn.classList.add('wrong');
+    options.forEach(b=>{
+      if(b.textContent === correct) b.classList.add('correct');
+    });
+  }
+}
+
+// Submit button
+document.getElementById('submitBtn').addEventListener('click', ()=>{
+  let score = 0;
+  userAnswers.forEach((ans,index)=>{
+    if(ans === quizData[index].answer) score++;
+  });
+  document.getElementById('result').textContent = `Your Score: ${score} / ${quizData.length}`;
+});
+</script>
+
+</body>
+</html>

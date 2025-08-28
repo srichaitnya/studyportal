@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>White Board Section</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  font-family:'Roboto',sans-serif;
+  background:#1f1f2e;
+  color:#fff;
+}
+header{
+  background:#2a2a42;
+  padding:20px 50px;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  position: sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
+}
+header h1{
+  font-family:'Montserrat',sans-serif;
+  font-size:28px;
+  margin:0;
+}
+nav a{
+  color:#fff;
+  margin-left:25px;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+}
+nav a:hover{
+  color:#88aaff;
+  transform: scale(1.05);
+}
+.container{
+  padding:40px;
+  text-align:center;
+}
+canvas{
+  background:#fff;
+  border-radius:10px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.4);
+  cursor:crosshair;
+}
+button{
+  margin:10px 5px;
+  padding:10px 20px;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+  font-weight:700;
+}
+button:hover{
+  transform: scale(1.05);
+}
+.pen-btn{background:#88aaff; color:#fff;}
+.marker-btn{background:#ffaa88; color:#fff;}
+.clear-btn{background:#ff5555; color:#fff;}
+footer{
+  background:#2a2a42;
+  padding:40px 50px;
+  text-align:center;
+  border-top:2px solid #444;
+  margin-top:40px;
+}
+footer p{
+  margin:8px 0;
+  font-size:14px;
+  color:#ccc;
+}
+footer a{
+  color:#88aaff;
+  text-decoration:none;
+  margin:0 12px;
+  transition:0.3s;
+}
+footer a:hover{
+  text-decoration:underline;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Study Portal</h1>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="paper-pattern.html">Paper Patterns</a>
+  </nav>
+</header>
+
+<div class="container">
+  <h2>Interactive White Board</h2>
+  <p>Use Pen or Marker to draw. Click Clear to erase.</p>
+  <div>
+    <button class="pen-btn" onclick="setPen()">Pen</button>
+    <button class="marker-btn" onclick="setMarker()">Marker</button>
+    <button class="clear-btn" onclick="clearBoard()">Clear</button>
+  </div>
+  <canvas id="whiteboard" width="900" height="500"></canvas>
+</div>
+
+<footer>
+  <p>© 2025 Study Portal. All rights reserved.</p>
+  <p>
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms of Service</a> | 
+    <a href="#">Contact Us</a>
+  </p>
+</footer>
+
+<script>
+const canvas = document.getElementById('whiteboard');
+const ctx = canvas.getContext('2d');
+
+let drawing = false;
+let currentTool = 'pen';
+
+// Set initial pen style
+ctx.strokeStyle = '#000';
+ctx.lineWidth = 2;
+ctx.lineCap = 'round';
+
+// Mouse events
+canvas.addEventListener('mousedown', e => { drawing = true; draw(e); });
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', () => drawing = false);
+canvas.addEventListener('mouseout', () => drawing = false);
+
+// Draw function
+function draw(e){
+  if(!drawing) return;
+  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(e.offsetX, e.offsetY);
+}
+
+// Tool functions
+function setPen(){
+  currentTool = 'pen';
+  ctx.strokeStyle = '#000';
+  ctx.globalAlpha = 1;
+  ctx.lineWidth = 2;
+}
+function setMarker(){
+  currentTool = 'marker';
+  ctx.strokeStyle = '#ff0000';
+  ctx.globalAlpha = 0.3;
+  ctx.lineWidth = 15;
+}
+function clearBoard(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+}
+</script>
+
+</body>
+</html>
+

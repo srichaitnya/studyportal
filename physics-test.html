@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  font-family: 'Roboto', sans-serif;
+  background: #1f1f2e;
+  color:#fff;
+}
+
+/* Header */
+header{
+  background: #2a2a42;
+  padding:30px 50px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position: sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
+  font-family:'Montserrat', sans-serif;
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+/* Hero */
+.hero{
+  text-align:center;
+  padding:60px 20px 40px 20px;
+  background:#2a2a42;
+}
+.hero h2{
+  font-family:'Montserrat', sans-serif;
+  font-size:32px;
+  margin-bottom:15px;
+}
+.hero p{
+  font-size:18px;
+  color:#ccc;
+  margin-bottom:25px;
+}
+
+/* Grid */
+.container{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  padding:40px 40px;
+}
+.card{
+  background: linear-gradient(145deg, #333366, #444488);
+  border-radius:20px;
+  padding:30px 20px;
+  text-align:center;
+  font-weight:700;
+  font-size:20px;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+  transition: all 0.4s ease, transform 0.4s ease;
+}
+.card:hover{
+  transform: translateY(-12px) scale(1.05);
+  box-shadow:0 10px 30px rgba(0,0,0,0.8);
+  background: linear-gradient(145deg, #5555aa, #7777cc);
+}
+
+/* Footer */
+footer{
+  background:#2a2a42;
+  padding:40px 50px;
+  text-align:center;
+  border-top: 2px solid #444;
+  margin-top:40px;
+}
+footer p{
+  margin:8px 0;
+  font-size:14px;
+  color:#ccc;
+}
+footer a{
+  color:#88aaff;
+  text-decoration:none;
+  margin:0 12px;
+  transition:0.3s;
+}
+footer a:hover{
+  text-decoration:underline;
+}
+</style>
+</head>
+<body>
+
+<header>
+  Study Portal
+</header>
+
+<section class="hero">
+  <h2>Physics Test</h2>
+  <p>Select a chapter to practise.</p>
+</section>
+
+<div class="container">
+  <div class="card" onclick="window.location='force-pressure.html'">Force & Pressure</div>
+  <div class="card" onclick="window.location='friction.html'">Friction</div>
+  <div class="card" onclick="window.location='sound.html'">Sound</div>
+  <div class="card" onclick="window.location='chemical-electric.html'">Chemical Effects of Electric Current</div>
+</div>
+
+<footer>
+  <p>© 2025 Study Portal. All rights reserved.</p>
+  <p>
+    <a href="privacy.html">Privacy Policy</a> | 
+    <a href="privacy-policy.html">Terms of Service</a> | 
+    <a href="contact.html">Contact Us</a>
+  </p>
+</footer>
+
+<script>
+// Fade-in cards
+const cards = document.querySelectorAll('.card');
+cards.forEach((card,index)=>{
+  card.style.opacity=0;
+  card.style.transform='translateY(30px)';
+  setTimeout(()=>{
+    card.style.transition='all 0.5s ease';
+    card.style.opacity=1;
+    card.style.transform='translateY(0)';
+  }, index*150);
+});
+</script>
+</body>
+</html>

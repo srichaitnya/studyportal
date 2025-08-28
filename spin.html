@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spin Wheel - Study Portal</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #1f1f2e;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+h1 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #88aaff;
+}
+#wheel {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 10px solid #fff;
+  position: relative;
+  overflow: hidden;
+  transition: transform 4s ease-out;
+}
+.section {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background: #444488;
+  transform-origin: 100% 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+}
+#pointer {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 30px solid red;
+  position: absolute;
+  top: -30px;
+  left: calc(50% - 15px);
+}
+button {
+  margin-top: 25px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  background: #88aaff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  background: #5577cc;
+}
+#result {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffdd55;
+}
+</style>
+</head>
+<body>
+  <h1>🎡 Spin & Win</h1>
+  <div id="wheel-container">
+    <div id="pointer"></div>
+    <div id="wheel"></div>
+  </div>
+  <button onclick="spin()">Spin</button>
+  <div id="result"></div>
+
+<script>
+// Rewards
+const rewards = [
+  "10 Coins",
+  "Better Luck Next Time",
+  "5 Coins",
+  "Motivational Quote",
+  "15 Coins",
+  "Free Quiz Pass"
+];
+
+const wheel = document.getElementById("wheel");
+
+// Create wheel sections
+for(let i=0; i<rewards.length; i++){
+  let section = document.createElement("div");
+  section.classList.add("section");
+  section.style.background = i%2==0 ? "#444488" : "#5555aa";
+  section.style.transform = `rotate(${i*(360/rewards.length)}deg) skewY(-60deg)`;
+  section.innerText = rewards[i];
+  wheel.appendChild(section);
+}
+
+let spinning = false;
+function spin(){
+  if(spinning) return;
+  spinning = true;
+  const randomSpin = 360*5 + Math.floor(Math.random()*360);
+  wheel.style.transform = `rotate(${randomSpin}deg)`;
+
+  setTimeout(()=>{
+    const degree = randomSpin % 360;
+    const index = Math.floor((360 - degree) / (360/rewards.length)) % rewards.length;
+    document.getElementById("result").innerText = "🎉 You got: " + rewards[index];
+    spinning = false;
+  }, 4500);
+}
+</script>
+</body>
+</html>
+

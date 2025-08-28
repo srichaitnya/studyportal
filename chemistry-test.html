@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemistry - Practise Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  font-family: 'Roboto', sans-serif;
+  background: #1f1f2e;
+  color:#fff;
+}
+header{
+  background: #2a2a42;
+  padding:30px 50px;
+  text-align:center;
+  font-family:'Montserrat', sans-serif;
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:1px;
+  position: sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
+}
+.container{
+  max-width:800px;
+  margin:40px auto;
+  padding:0 20px;
+}
+.chapter-select{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-bottom:30px;
+}
+.chapter-select button{
+  padding:12px 25px;
+  border:none;
+  border-radius:12px;
+  background:#5555aa;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.3s;
+}
+.chapter-select button:hover{
+  background:#7777cc;
+  transform: scale(1.05);
+}
+.question-card{
+  background: linear-gradient(145deg, #333366, #444488);
+  padding:25px 20px;
+  border-radius:15px;
+  margin-bottom:25px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+}
+.question-card h3{
+  margin-bottom:15px;
+}
+.options button{
+  display:block;
+  width:100%;
+  margin:8px 0;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  background:#5555aa;
+  color:#fff;
+  transition:0.3s;
+}
+.options button:hover{
+  background:#7777cc;
+}
+.options button.correct{
+  background:#28a745 !important;
+}
+.options button.wrong{
+  background:#dc3545 !important;
+}
+#submitBtn{
+  width:100%;
+  padding:15px;
+  margin-top:20px;
+  background: linear-gradient(145deg, #333366, #444488);
+  border:none;
+  border-radius:12px;
+  color:#fff;
+  font-weight:700;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.3s;
+}
+#submitBtn:hover{
+  background: linear-gradient(145deg, #5555aa, #7777cc);
+  transform: scale(1.05);
+}
+#result{
+  text-align:center;
+  margin-top:20px;
+  font-size:22px;
+  font-weight:700;
+  color:#88ff88;
+}
+</style>
+</head>
+<body>
+
+<header>Study Portal - Chemistry</header>
+
+<div class="container">
+  <div class="chapter-select">
+    <button onclick="loadChapter('coal')">Coal & Petroleum</button>
+    <button onclick="loadChapter('combustion')">Combustion & Flame</button>
+  </div>
+</div>
+
+<div class="container" id="quizContainer"></div>
+
+<div class="container">
+  <button id="submitBtn">Submit Answers</button>
+  <div id="result"></div>
+</div>
+
+<script>
+// MCQs for both chapters
+const chapters = {
+  coal: [
+    { question: "1. Main constituent of coal?", options: ["Carbon", "Hydrogen", "Oxygen", "Nitrogen"], answer: "Carbon" },
+    { question: "2. Coal is formed from?", options: ["Dead plants", "Rocks", "Animals", "Water"], answer: "Dead plants" },
+    { question: "3. Petrol obtained from?", options: ["Crude oil", "Coal", "Water", "Sand"], answer: "Crude oil" },
+    { question: "4. Coal is?", options: ["Fossil fuel", "Renewable fuel", "Metal", "Gas"], answer: "Fossil fuel" },
+    { question: "5. Coke is used in?", options: ["Blast furnace", "Cooking", "Heating water", "Lighting"], answer: "Blast furnace" }
+  ],
+  combustion: [
+    { question: "1. Combustion is?", options: ["Rapid chemical reaction with oxygen", "Physical change", "Melting", "Freezing"], answer: "Rapid chemical reaction with oxygen" },
+    { question: "2. Flame shows?", options: ["Oxidation of fuel", "Cooling of fuel", "Melting of metal", "Boiling water"], answer: "Oxidation of fuel" },
+    { question: "3. Fire requires?", options: ["Fuel, oxygen, heat", "Water only", "Air only", "Light only"], answer: "Fuel, oxygen, heat" },
+    { question: "4. Candle flame is?", options: ["Combination of gases burning", "Liquid burning", "Solid burning", "None"], answer: "Combination of gases burning" },
+    { question: "5. Soot is formed due to?", options: ["Incomplete combustion", "Complete combustion", "Heating", "Cooling"], answer: "Incomplete combustion" }
+  ]
+};
+
+// Track first-selected answers
+let userAnswers = [];
+let currentChapter = 'coal';
+
+function loadChapter(chapter){
+  currentChapter = chapter;
+  userAnswers = new Array(chapters[chapter].length).fill(null);
+  const quizContainer = document.getElementById('quizContainer');
+  quizContainer.innerHTML = '';
+  chapters[chapter].forEach((q,index)=>{
+    const card = document.createElement('div');
+    card.classList.add('question-card');
+    let optionsHTML = '<div class="options">';
+    q.options.forEach(option=>{
+      optionsHTML += `<button onclick="selectAnswer(this,${index},'${q.answer}')">${option}</button>`;
+    });
+    optionsHTML += '</div>';
+    card.innerHTML = `<h3>${q.question}</h3>${optionsHTML}`;
+    quizContainer.appendChild(card);
+  });
+  document.getElementById('result').textContent='';
+}
+
+// Handle answer selection
+function selectAnswer(btn, qIndex, correct){
+  if(userAnswers[qIndex] !== null) return; // Only first click counts
+  userAnswers[qIndex] = btn.textContent;
+  const options = btn.parentElement.querySelectorAll('button');
+  options.forEach(b=>b.disabled=true);
+  if(btn.textContent === correct){
+    btn.classList.add('correct');
+  } else {
+    btn.classList.add('wrong');
+    options.forEach(b=>{
+      if(b.textContent === correct) b.classList.add('correct');
+    });
+  }
+}
+
+// Submit answers
+document.getElementById('submitBtn').addEventListener('click', ()=>{
+  let score = 0;
+  userAnswers.forEach((ans,index)=>{
+    if(ans === chapters[currentChapter][index].answer) score++;
+  });
+  document.getElementById('result').textContent = `Your Score: ${score} / ${chapters[currentChapter].length}`;
+});
+
+// Load default chapter
+loadChapter('coal');
+</script>
+
+</body>
+</html>
